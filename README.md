@@ -2,12 +2,12 @@
 
 ## About
 
-SELECT (dtype A[ ], int n, int k) returns the kth smallest element of the array. 
+**SELECT()** returns the kth smallest element of the array. 
 
-## Usage
+## Usage (to search for 2nd smallest element) 
 ```bash
 # make 
-# make run select=1 k
+# make run select=1 k=2
 ```
 
 ## Limitation
