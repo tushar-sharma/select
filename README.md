@@ -2,9 +2,12 @@
 
 ## About
 
-**SELECT()** returns the kth smallest element of the array. 
+**SELECT** returns the kth smallest element of the array. 
 
-## Usage (to search for 2nd smallest element) 
+## Usage 
+
+### To search for 2nd smallest element using select1 method
+
 ```bash
 # make 
 # make run select=1 k=2
@@ -14,9 +17,9 @@
 
 - The code is under progress.
 
-## Selec1
+## Select1
 
-Returns the kth element in the array. It returns -1 if not found. 
+Returns the kth smallest element in the array. It returns -1 if not found. 
 
 ## Author
 
