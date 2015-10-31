@@ -1,25 +1,34 @@
 #Implements SELECT
 
-## About
 
-**SELECT** returns the kth smallest element of the array. 
+About
+-------------
+
+Implemented Selection. It retuns the kth smallest element in an array. 
+
 
 ## Usage 
 
-### To search for 2nd smallest element using select1 method
+Compile the code by typing
 
-```bash
-# make 
-# make run select=1 k=2
-```
+.. code-block:: bash
+	$ make
+
+Run the program to find the kth smallest element. For e.g. to find 2nd most element using select1, type 
+
+.. code-block:: bash
+	$ make run select=1 k=2
+
+
+Documentation
+-------------
+
+
+- Select1 returns the kth smallest element in the array. It returns -1 if not found. 
 
 ## Limitation
 
 - The code is under progress.
-
-## Select1
-
-Returns the kth smallest element in the array. It returns -1 if not found. 
 
 ## Author
 
