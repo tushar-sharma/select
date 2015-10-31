@@ -1,1 +1,5 @@
-
+Unsorted Array is
+54,23,72,11,9,88,5,99
+Sorted Array is
+5,9,11,23,54,72,88,99
+The 5th smallest element in array is 54

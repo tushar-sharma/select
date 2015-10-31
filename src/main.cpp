@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
+#include "insertionSort.h"
 using namespace std; 
 /*
  * Author : Tushar Sharma 
@@ -12,13 +13,13 @@ using namespace std;
 
 int COMPARECOUNT = 0; 
 
-int printArray(vector<int> unsortedArray,int start,  int size) 
-{
-    fstream fp;
-    //fp.open("output.txt" , ios::out | ios_base::app | ios::binary);
-    fp.open("outs/output.txt" , ios::out  | ios::binary);
 
+int printArray(vector<int> unsortedArray,int start, int size, string message, fstream& fp) 
+{
+	int run_once = 1;
     if (fp.is_open()) {
+		if (run_once-- == 1) 
+			fp<<message<<endl;
         for (int i = start; i < (start + size); i++) {
 	    if (i == 0) 
 	        fp<<unsortedArray[i];
@@ -26,7 +27,6 @@ int printArray(vector<int> unsortedArray,int start,  int size)
 	}
     }
     fp<<endl;
-    fp.close();
     return 0;
 }
 
@@ -52,6 +52,13 @@ int instructions() {
     exit(-1);
 }
 
+
+int select1(vector<int>& arr, int n, int k)
+{
+	if (k <= n) return arr[k - 1]; 
+
+    else return(-1);
+}
 
 
 int count = 0; 
@@ -126,11 +133,12 @@ int quicksort(vector<int>& arr, int left, int right)
 }
 
 
+
 int main(int argc, char **argv) {
  
     
-    // check if it has atleast 2 argument
-    if (argc < 3) {
+    // check if it has atleast 3 argument
+    if (argc < 4) {
         instructions();
     }
 
@@ -138,25 +146,47 @@ int main(int argc, char **argv) {
  
     time_start = clock(); 
     vector<int> unsortedArray; 
-    
+
+    fstream fp;
+    fp.open("outs/output.txt" , ios::out | ios::binary);
+
     //argv[1] is filename passed as input
     // read and store values from the text file
     readAllNumbers(unsortedArray, argv[1]);
+	printArray(unsortedArray, 0, unsortedArray.size(), "Unsorted Array is", fp);
 
     int left = 0, right = unsortedArray.size() -1;
-   //argv[2] has the type. eg q for quicksort, m for merge sort
+    //argv[2] has the type. eg q for quicksort, m for merge sort
 
-    if (strcmp(argv[2], "1") == 0)  quicksort(unsortedArray, left, right);
-    
+	int k = atoi(argv[3]), ksmall;
+    if (strcmp(argv[2], "1") == 0){
+        quicksort(unsortedArray, left, right);
+	   	ksmall = select1(unsortedArray, unsortedArray.size(), k);
+	}
+	else if (strcmp(argv[2], "2") == 0) {
+		//if the size of the array < 25 
+		//sort the array using insertion sort 
+		if(unsortedArray.size() < 25) {
+			insertionSort(unsortedArray);
+     		ksmall = select1(unsortedArray, unsortedArray.size(),k);
+		}
+	}
+
     else instructions();
 
-
     cout<<"\nPlease see outs/output.txt for the answer.\n";
-    printArray(unsortedArray, 0, unsortedArray.size()); 
+    printArray(unsortedArray, 0, unsortedArray.size(), "Sorted Array is", fp); 
 
     cout<<"\nThe total key comparison were "<<COMPARECOUNT<<endl;
 
     double duration = ( clock() - time_start ) / (double) CLOCKS_PER_SEC;
     cout<<"\nThis program took "<<duration<<" seconds to execute. Thank you for running.\n"<<endl;
+
+	if (ksmall != -1)
+	    fp<<"The "<<k<<"th smallest element in array is "<<ksmall<<endl;
+	else 
+		fp<<k<<"th smallest is not found in the array"<<endl;
+
+	fp.close();
     return 0;
 }

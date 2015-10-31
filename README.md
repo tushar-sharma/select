@@ -7,12 +7,16 @@ SELECT (dtype A[ ], int n, int k) returns the kth smallest element of the array.
 ## Usage
 ```bash
 # make 
-# make run select=1 
+# make run select=1 k
 ```
 
 ## Limitation
 
 - The code is under progress.
+
+## Selec1
+
+Returns the kth element in the array. It returns -1 if not found. 
 
 ## Author
 
