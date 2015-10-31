@@ -11,17 +11,12 @@ Implemented Selection. It retuns the kth smallest element in an array.
 
 Compile the code by, simply:
 
-.. code-block:: bash
-
-    $ pip install requests
-
+	$ make
 
 Run the program to find the kth smallest element. For e.g. to find 2nd most element using select1, type 
 
 
-.. code-block:: bash
-
-    $ make run select=1 k=2
+	$ make run select=1 k=2
 
 
 Documentation
